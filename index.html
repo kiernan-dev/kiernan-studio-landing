@@ -70,22 +70,22 @@ Senior Javascript Engineer | AI-Amplified Development
       <div class="navbar-tabs" id="navbar-tabs">
         <ul class="navbar-tabs-ul">
           <li class="about" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="300">
-            <a href="#about" aria-label="about menu button">
+            <a href="javascript:void(0)" onclick="scrollToSection('about')" aria-label="about menu button">
               &#60;/AboutMe&#62;
             </a>
           </li>
           <li class="skills" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="500">
-            <a href="#skills" aria-label="skills menu button">
+            <a href="javascript:void(0)" onclick="scrollToSection('skills')" aria-label="skills menu button">
               &#60;/Skills&#62;
             </a>
           </li>
           <li class="projects" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="700">
-            <a href="#projects" aria-label="projects menu button">
+            <a href="javascript:void(0)" onclick="scrollToSection('projects')" aria-label="projects menu button">
               &#60;/Projects&#62;
             </a>
           </li>
           <li class="contact" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="900">
-            <a href="#footer" aria-label="contact menu button">
+            <a href="javascript:void(0)" onclick="scrollToSection('footer')" aria-label="contact menu button">
               &#60;/Contact&#62;
             </a>
           </li>
@@ -107,23 +107,23 @@ Senior Javascript Engineer | AI-Amplified Development
     </div>
     <div class="mobiletogglemenu" id="mobiletogglemenu">
       <ul class="mobile-navbar-tabs-ul" id="mobile-ul">
-        <li id="aboutme-mobile-tab" class="mobile-navbar-tabs-li about" onclick="hidemenubyli()">
-          <a href="#about" tabindex="0" aria-label="about menu button">
+        <li id="aboutme-mobile-tab" class="mobile-navbar-tabs-li about" onclick="hidemenubyli(); scrollToSection('about')">
+          <a href="javascript:void(0)" tabindex="0" aria-label="about menu button">
             &#60;/AboutMe&#62;
           </a>
         </li>
-        <li id="skills-mobile-tab" class="mobile-navbar-tabs-li skills" onclick="hidemenubyli()">
-          <a href="#skills" tabindex="0" aria-label="skills menu button">
+        <li id="skills-mobile-tab" class="mobile-navbar-tabs-li skills" onclick="hidemenubyli(); scrollToSection('skills')">
+          <a href="javascript:void(0)" tabindex="0" aria-label="skills menu button">
             &#60;/Skills&#62;
           </a>
         </li>
-        <li id="projects-mobile-tab" class="mobile-navbar-tabs-li projects" onclick="hidemenubyli()">
-          <a href="#projects" tabindex="0" aria-label="projects menu button">
+        <li id="projects-mobile-tab" class="mobile-navbar-tabs-li projects" onclick="hidemenubyli(); scrollToSection('projects')">
+          <a href="javascript:void(0)" tabindex="0" aria-label="projects menu button">
             &#60;/Projects&#62;
           </a>
         </li>
-        <li id="contact-mobile-tab" class="mobile-navbar-tabs-li contact" onclick="hidemenubyli()">
-          <a href="#footer" tabindex="0" aria-label="contact menu button">
+        <li id="contact-mobile-tab" class="mobile-navbar-tabs-li contact" onclick="hidemenubyli(); scrollToSection('footer')">
+          <a href="javascript:void(0)" tabindex="0" aria-label="contact menu button">
             &#60;/Contact&#62;
           </a>
         </li>
@@ -715,6 +715,16 @@ Senior Javascript Engineer | AI-Amplified Development
       var url = "kiernan-resume-2025.html";
 
       window.open(url, "_blank");
+    }
+
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     }
 
     const cursorInner = document.getElementById("cursor-inner");
