@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# Misc
+*.bak
+*.tmp
+*.temp
+.cache
