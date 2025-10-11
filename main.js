@@ -17,6 +17,7 @@ function visualmode() {
 window.addEventListener("load", function() {
 	loader.style.display = "none", document.querySelector(".hey").classList.add("popup")
 });
+
 let emptyArea = document.getElementById("emptyarea"),
 	mobileTogglemenu = document.getElementById("mobiletogglemenu");
 
@@ -41,12 +42,12 @@ window.addEventListener("scroll", () => {
 		t.classList.remove("activeThistab"), t.classList.contains(e) && t.classList.add("activeThistab")
 	})
 }), console.log("%c Designed and Developed by Steven Kiernan", "background-image: linear-gradient(90deg,#8000ff,#6bc5f8); color: white;font-weight:900;font-size:1rem; padding:20px;");
-let mybutton = document.getElementById("backtotopbutton");
+
+let backtop = document.getElementById("backtotopbutton");
 
 function scrollFunction() {
-	document.body.scrollTop > 400 || document.documentElement.scrollTop > 400 ? mybutton.style.display = "block" : mybutton.style.display = "none"
+	document.body.scrollTop > 400 || document.documentElement.scrollTop > 400 ? backtop.style.display = "block" : backtop.style.display = "none"
 }
-
 function scrolltoTopfunction() {
 	document.body.scrollTop = 0, document.documentElement.scrollTop = 0
 }
@@ -55,29 +56,3 @@ window.onscroll = function() {
 }, document.addEventListener("contextmenu", function(e) {
 	"IMG" === e.target.nodeName && e.preventDefault()
 }, !1);
-let Pupils = document.getElementsByClassName("footer-pupil"),
-	pupilsArr = Array.from(Pupils),
-	pupilStartPoint = -10,
-	pupilRangeX = 20,
-	pupilRangeY = 15,
-	mouseXStartPoint = 0,
-	mouseXEndPoint = window.innerWidth,
-	currentXPosition = 0,
-	fracXValue = 0,
-	mouseYEndPoint = window.innerHeight,
-	currentYPosition = 0,
-	fracYValue = 0,
-	mouseXRange = mouseXEndPoint - mouseXStartPoint;
-const mouseMove = e => {
-		fracXValue = (currentXPosition = e.clientX - mouseXStartPoint) / mouseXRange, fracYValue = (currentYPosition = e.clientY) / mouseYEndPoint;
-		let t = pupilStartPoint + fracXValue * pupilRangeX,
-			o = pupilStartPoint + fracYValue * pupilRangeY;
-		pupilsArr.forEach(e => {
-			e.style.transform = `translate(${t}px, ${o}px)`
-		})
-	},
-	windowResize = e => {
-		mouseXEndPoint = window.innerWidth, mouseYEndPoint = window.innerHeight, mouseXRange = mouseXEndPoint - mouseXStartPoint
-	};
-
-window.addEventListener("mousemove", mouseMove), window.addEventListener("resize", windowResize);
