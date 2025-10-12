@@ -1997,6 +1997,40 @@ footer {
     .navbar-tabs-ul {
         display: none;
     }
+
+    /* Hide some elements on medium mobile */
+    .cursor-inner,
+    .cursor-outer {
+        display: none !important;
+    }
+
+    .blob {
+        opacity: 0.2;
+        filter: blur(400px);
+    }
+
+    /* Hero Section Medium Mobile Fixes */
+    .text-content {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    #name,
+    #work {
+        font-size: 5.5rem;
+        max-width: 100%;
+    }
+
+    #info-para {
+        font-size: 2.4rem;
+    }
+
+    /* Visualizer positioning for medium mobile */
+    #p5-visualizer-container {
+        top: 25% !important;
+        left: 80% !important;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
     
     .hamburger {
         display: flex;
@@ -2030,6 +2064,28 @@ footer {
         align-items: center;
         justify-content: space-between;
         background-color: transparent;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    #hamburger-button::before {
+        content: '';
+        position: absolute;
+        width: 5.5rem;
+        height: 5.5rem;
+        background: rgba(17, 17, 27, 0.6);
+        border-radius: 50%;
+        backdrop-filter: blur(20px);
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+    }
+
+    #hamburger-button:hover::before {
+        background: rgba(17, 17, 27, 0.7);
+        transform: translate(-50%, -50%) scale(1.05);
     }
     
     #burger-bar1,
@@ -2088,7 +2144,8 @@ footer {
     }
 
     .mobile-navbar-tabs-ul {
-        background-color: var(--color-dark-mode);
+        background: rgba(17, 17, 27, 0.6);
+        backdrop-filter: blur(20px);
         width: 100%;
         height: 100%;
         display: flex;
@@ -2096,7 +2153,7 @@ footer {
         justify-content: center;
         align-items: center;
         gap: 70px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, .176);
+        box-shadow: 0 0 30px rgba(0, 0, 0, .3);
     }
 
     .mobile-navbar-tabs-li {
@@ -2104,13 +2161,14 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.8rem;
+        font-size: 4rem;
         font-weight: 600;
         position: relative;
         cursor: pointer;
         font-family: fira code;
-        height: 30px;
+        height: fit-content;
         width: fit-content;
+        padding: 1rem 0;
     }
 
     .mobile-navbar-tabs-ul a {
@@ -2136,6 +2194,113 @@ footer {
 @media screen and (max-width: 580px) {
     html {
         font-size: 45%;
+    }
+
+    body {
+        padding: 0 25px;
+    }
+
+    /* Hide elements that cause horizontal scroll */
+    .logo {
+        display: none;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    #p5-visualizer-container,
+    #visualizer-play-pause {
+        display: none !important;
+    }
+
+    #bigVisualizer {
+        display: none;
+    }
+
+    .blob {
+        display: none;
+    }
+
+    .cursor-inner,
+    .cursor-outer {
+        display: none !important;
+    }
+
+    /* Hero Section Mobile Fixes */
+    .landing-page-container {
+        height: calc(100vh - 115px);
+        overflow-x: hidden;
+    }
+
+    .text-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    #hello-friend {
+        font-size: 3.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    #name,
+    #work {
+        font-size: 5.5rem;
+        line-height: 1.1;
+        flex-wrap: wrap;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    #name .jello,
+    #work .jello {
+        font-size: 5.5rem;
+    }
+
+    #info-para {
+        font-size: 2.6rem;
+        padding-top: 25px;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    .contact-btn-div {
+        padding-top: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .letsTalkBtn {
+        width: 140px;
+        height: 35px;
+        transform: scale(0.8);
+        transform-origin: left;
+    }
+
+    .letsTalkBtn-text {
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .setting-container {
+        margin-left: 0;
+        gap: 15px;
+    }
+
+    /* Visualizer Mobile Positioning */
+    #p5-visualizer-container {
+        top: 20% !important;
+        left: 85% !important;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    #visualizer-play-pause {
+        transform: translate(-50%, -50%) scale(0.8);
     }
 
     .logo {
