@@ -42,6 +42,9 @@ Senior Javascript Engineer | AI-Amplified Development
   <!-- google fonts-->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps" />
+  <!-- p5.js for audio visualizer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
 </head>
 <body class="body">
   <audio loop="" id="audioPlayer" style="display: none">
@@ -125,7 +128,8 @@ Senior Javascript Engineer | AI-Amplified Development
     <!-- mobile toggle menu ends -->
     <section class="landing-page-container" id="home">
       <div class="blob"></div>
-      <canvas id="audioVisualizer" width="800" height="400"></canvas>
+      <canvas id="bigVisualizer" width="800" height="400"></canvas>
+      <div id="p5-visualizer-container" style="position: absolute; top: 40%; left: 82%; transform: translate(-50%, -50%); z-index: 5;"></div>
 
       <div class="text-content">
         <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
@@ -202,6 +206,7 @@ Senior Javascript Engineer | AI-Amplified Development
             </div>
 
             <div class="music-selector-container" id="music-selector-container">
+              <canvas id="smallVisualizer" width="200" height="50"></canvas>
               <select id="music-selector" onchange="changeTrack()" aria-label="select music track">
                 <option value="src/mp3/infinite-canvas.mp3">Infinite Canvas</option>
                 <option value="src/mp3/neon-currents.mp3">Neon Currents</option>

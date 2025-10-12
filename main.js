@@ -1,88 +1,111 @@
 var audio = document.getElementById("audioPlayer"),
 	loader = document.getElementById("preloader");
 
-// Audio Visualizer Setup
-var audioContext, analyser, dataArray, canvas, canvasContext;
-var isVisualizerInitialized = false;
+// P5.js Audio Visualizer Variables - Exact Clone
+const fftStartingPoint = 0; //Where we want to start at the FFT, I don't even know if this is a good idea.
+const gradients = [
+  {start: [16, 141, 199], end: [239, 142, 56]},
+  {start: [247, 255, 0], end: [219, 54, 164]},
+  {start: [33, 95, 0], end: [228, 228, 217]},
+  {start: [222, 98, 98], end: [255, 184, 140]},
+  {start: [251, 211, 233], end: [187, 55, 125]},
+  {start: [67, 206, 162], end: [24, 90, 157]}
+];
 
-function initializeVisualizer() {
-	if (isVisualizerInitialized) return;
-	
-	canvas = document.getElementById("audioVisualizer");
-	canvasContext = canvas.getContext("2d");
-	
-	// Set canvas size based on CSS computed size
-	var rect = canvas.getBoundingClientRect();
-	canvas.width = rect.width;
-	canvas.height = rect.height;
-	
-	try {
-		audioContext = new (window.AudioContext || window.webkitAudioContext)();
-		analyser = audioContext.createAnalyser();
-		
-		var source = audioContext.createMediaElementSource(audio);
-		source.connect(analyser);
-		analyser.connect(audioContext.destination);
-		
-		analyser.fftSize = 256;
-		var bufferLength = analyser.frequencyBinCount;
-		dataArray = new Uint8Array(bufferLength);
-		
-		isVisualizerInitialized = true;
-		animate();
-	} catch (error) {
-		console.log("Audio visualization not supported in this browser");
-	}
+// Dark gradients for light mode
+const darkGradients = [
+  {start: [8, 70, 99], end: [119, 71, 28]},
+  {start: [123, 127, 0], end: [109, 27, 82]},
+  {start: [16, 47, 0], end: [114, 114, 108]},
+  {start: [111, 49, 49], end: [127, 92, 70]},
+  {start: [125, 105, 116], end: [93, 27, 62]},
+  {start: [33, 103, 81], end: [12, 45, 78]}
+];
+
+let startColor;
+let endColor;
+let rotateAngle = 0;
+let sound;
+let fft;
+
+// Function to check if we're in light mode
+function isLightMode() {
+  return document.body.classList.contains('light-mode');
 }
 
-function animate() {
-	requestAnimationFrame(animate);
-	
-	if (!analyser || audio.paused) {
-		// Draw static bars when not playing
-		drawStaticBars();
-		return;
-	}
-	
-	analyser.getByteFrequencyData(dataArray);
-	
-	canvasContext.fillStyle = "rgba(0, 0, 0, 0.1)";
-	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-	
-	var barWidth = (canvas.width / dataArray.length) * 2.5;
-	var barHeight;
-	var x = 0;
-	
-	for (var i = 0; i < dataArray.length; i++) {
-		barHeight = (dataArray[i] / 255) * canvas.height * 0.8;
-		
-		// Create gradient colors based on frequency
-		var r = (barHeight + 100) * 2;
-		var g = 50 + (i * 2);
-		var b = 255 - (barHeight / 2);
-		
-		canvasContext.fillStyle = `rgb(${r},${g},${b})`;
-		canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-		
-		x += barWidth + 1;
-	}
+// Function to get appropriate gradient colors based on theme
+function getGradientColors() {
+  const currentGradients = isLightMode() ? darkGradients : gradients;
+  return currentGradients[Math.floor(Math.random() * currentGradients.length)];
 }
 
-function drawStaticBars() {
-	canvasContext.fillStyle = "rgba(0, 0, 0, 0.1)";
-	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-	
-	var barWidth = (canvas.width / 128) * 2.5;
-	var x = 0;
-	
-	for (var i = 0; i < 128; i++) {
-		var barHeight = Math.random() * 30 + 10; // Static random bars
-		
-		canvasContext.fillStyle = `rgba(100, 100, 200, 0.3)`;
-		canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-		
-		x += barWidth + 1;
-	}
+
+// P5.js Audio Visualizer - Exact Clone
+function setup() {
+  const cnv = createCanvas(600, 600);
+  cnv.parent('p5-visualizer-container');
+  
+  cnv.mouseClicked(() => { 
+    if (sound && sound.isPlaying()) {
+      sound.pause();
+    } else if (sound && !sound.isPlaying()) {
+      sound.play();
+    }
+  });
+  
+  fft = new p5.FFT(0.75);
+  colorMode(RGB);
+  startColor = color(0, 0, 0);
+  endColor = color(0, 0, 0);
+}
+
+function draw() {
+  clear();
+  translate(width / 2, height / 2);
+  
+  rotate(rotateAngle);
+  rotateAngle += 0.001;
+  
+  noFill();
+  stroke(isLightMode() ? 0 : 255);
+  ellipse(0, 0, 150, 150);
+  
+  const spectrum = fft.analyze();
+  const spectrumValues = [];
+    
+  for (let i = fftStartingPoint; i < ((PI * 100) + fftStartingPoint) * 3; i+=3) {
+    //Maybe take the average of all 3 for a line? someone help me do this better please!
+    spectrumValues.push((spectrum[i] + spectrum[i + 1], spectrum[i + 2]) / 3);
+  }
+    
+  let count = 0;
+  let angle = 0.0;
+  let incrementPosRight = 0.0;
+  let incrementPosLeft = 0.0;
+  let increment =  0.0128;
+  let lerpy;
+  
+  for (let i = 0; i < TWO_PI; i+= 0.04) {
+    const x = sin(i) * 80;
+    const y = cos(i) * 80;
+    
+    if (i < PI) {
+      lerpy = lerpColor(startColor, endColor, incrementPosRight);
+      incrementPosRight += increment;
+    } else {
+      lerpy = lerpColor(endColor, startColor, incrementPosLeft);
+      incrementPosLeft += increment
+    }
+    
+    stroke(lerpy);
+    push();
+    translate(x, y);
+    rotate(-angle);
+    rect(0, 0, 1, map(spectrumValues[count], 0, 70, 2, 128));
+    pop();
+    count++;
+    angle += 0.04;
+  }
 }
 
 function changeTrack() {
@@ -90,9 +113,18 @@ function changeTrack() {
 	var newSrc = selector.value;
 	var wasPlaying = !audio.paused;
 	
+	// Stop current audio and p5.js sound
+	audio.pause();
+	if (sound && sound.isPlaying()) {
+		sound.stop();
+	}
+	
 	audio.src = newSrc;
 	
-	if (wasPlaying && document.getElementById("switchforsound").checked) {
+	// Load the new track into p5.js sound and wait for it to be ready
+	if (typeof loadSound !== 'undefined') {
+		loadP5SoundAndPlay(wasPlaying && document.getElementById("switchforsound").checked);
+	} else if (wasPlaying && document.getElementById("switchforsound").checked) {
 		audio.play();
 	}
 }
@@ -107,24 +139,91 @@ function settingtoggle() {
 function playpause() {
 	if (!document.getElementById("switchforsound").checked) {
 		audio.pause();
-	} else {
-		if (!isVisualizerInitialized) {
-			initializeVisualizer();
+		if (sound && sound.isPlaying()) {
+			sound.pause();
 		}
-		if (audioContext && audioContext.state === 'suspended') {
-			audioContext.resume();
+	} else {
+		// Load p5.js sound if not already loaded
+		if (!sound && typeof loadSound !== 'undefined') {
+			loadP5Sound();
 		}
 		audio.play();
+		if (sound && !sound.isPlaying()) {
+			sound.play();
+		}
 	}
 }
 
 function visualmode() {
 	document.body.classList.toggle("light-mode"), document.querySelectorAll(".needtobeinvert").forEach(function(e) {
 		e.classList.toggle("invertapplied")
-	})
+	});
+	
+	// Update visualizer colors when theme changes
+	if (sound && typeof color !== 'undefined') {
+		const { start, end } = getGradientColors();
+		startColor = color(start[0], start[1], start[2]);
+		endColor = color(end[0], end[1], end[2]);
+	}
 }
+// Connect p5.js sound to the existing audio player
+function loadP5Sound() {
+  if (sound) {
+    sound.stop();
+    sound = null;
+  }
+  
+  const currentSrc = audio.src;
+  console.log('Loading p5.js sound:', currentSrc);
+  
+  sound = loadSound(currentSrc, () => {
+    console.log('p5.js sound loaded successfully');
+    const { start, end } = getGradientColors();
+    startColor = color(start[0], start[1], start[2]);
+    endColor = color(end[0], end[1], end[2]);
+  }, (error) => {
+    console.error('Error loading p5.js sound:', error);
+  });
+}
+
+// Load p5.js sound and coordinate playback with regular audio
+function loadP5SoundAndPlay(shouldPlay) {
+  if (sound) {
+    sound.stop();
+    sound = null;
+  }
+  
+  const currentSrc = audio.src;
+  console.log('Loading p5.js sound for coordinated playback:', currentSrc);
+  
+  sound = loadSound(currentSrc, () => {
+    console.log('p5.js sound loaded, starting coordinated playback');
+    const { start, end } = getGradientColors();
+    startColor = color(start[0], start[1], start[2]);
+    endColor = color(end[0], end[1], end[2]);
+    
+    // Now that p5.js sound is ready, start both audio sources if needed
+    if (shouldPlay) {
+      audio.play();
+      sound.play();
+    }
+  }, (error) => {
+    console.error('Error loading p5.js sound:', error);
+    // If p5.js sound fails, still play regular audio
+    if (shouldPlay) {
+      audio.play();
+    }
+  });
+}
+
 window.addEventListener("load", function() {
-	loader.style.display = "none", document.querySelector(".hey").classList.add("popup")
+	loader.style.display = "none", document.querySelector(".hey").classList.add("popup");
+	// Initialize p5.js sound with the default track
+	setTimeout(() => {
+		if (typeof loadSound !== 'undefined') {
+			loadP5Sound();
+		}
+	}, 1000);
 });
 
 let emptyArea = document.getElementById("emptyarea"),
