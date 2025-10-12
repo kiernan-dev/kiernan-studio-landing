@@ -1,12 +1,121 @@
 var audio = document.getElementById("audioPlayer"),
 	loader = document.getElementById("preloader");
 
+// Audio Visualizer Setup
+var audioContext, analyser, dataArray, canvas, canvasContext;
+var isVisualizerInitialized = false;
+
+function initializeVisualizer() {
+	if (isVisualizerInitialized) return;
+	
+	canvas = document.getElementById("audioVisualizer");
+	canvasContext = canvas.getContext("2d");
+	
+	// Set canvas size based on CSS computed size
+	var rect = canvas.getBoundingClientRect();
+	canvas.width = rect.width;
+	canvas.height = rect.height;
+	
+	try {
+		audioContext = new (window.AudioContext || window.webkitAudioContext)();
+		analyser = audioContext.createAnalyser();
+		
+		var source = audioContext.createMediaElementSource(audio);
+		source.connect(analyser);
+		analyser.connect(audioContext.destination);
+		
+		analyser.fftSize = 256;
+		var bufferLength = analyser.frequencyBinCount;
+		dataArray = new Uint8Array(bufferLength);
+		
+		isVisualizerInitialized = true;
+		animate();
+	} catch (error) {
+		console.log("Audio visualization not supported in this browser");
+	}
+}
+
+function animate() {
+	requestAnimationFrame(animate);
+	
+	if (!analyser || audio.paused) {
+		// Draw static bars when not playing
+		drawStaticBars();
+		return;
+	}
+	
+	analyser.getByteFrequencyData(dataArray);
+	
+	canvasContext.fillStyle = "rgba(0, 0, 0, 0.1)";
+	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+	
+	var barWidth = (canvas.width / dataArray.length) * 2.5;
+	var barHeight;
+	var x = 0;
+	
+	for (var i = 0; i < dataArray.length; i++) {
+		barHeight = (dataArray[i] / 255) * canvas.height * 0.8;
+		
+		// Create gradient colors based on frequency
+		var r = (barHeight + 100) * 2;
+		var g = 50 + (i * 2);
+		var b = 255 - (barHeight / 2);
+		
+		canvasContext.fillStyle = `rgb(${r},${g},${b})`;
+		canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+		
+		x += barWidth + 1;
+	}
+}
+
+function drawStaticBars() {
+	canvasContext.fillStyle = "rgba(0, 0, 0, 0.1)";
+	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+	
+	var barWidth = (canvas.width / 128) * 2.5;
+	var x = 0;
+	
+	for (var i = 0; i < 128; i++) {
+		var barHeight = Math.random() * 30 + 10; // Static random bars
+		
+		canvasContext.fillStyle = `rgba(100, 100, 200, 0.3)`;
+		canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+		
+		x += barWidth + 1;
+	}
+}
+
+function changeTrack() {
+	var selector = document.getElementById("music-selector");
+	var newSrc = selector.value;
+	var wasPlaying = !audio.paused;
+	
+	audio.src = newSrc;
+	
+	if (wasPlaying && document.getElementById("switchforsound").checked) {
+		audio.play();
+	}
+}
+
 function settingtoggle() {
-	document.getElementById("setting-container").classList.toggle("settingactivate"), document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow"), document.getElementById("soundtogglebuttoncontainer").classList.toggle("soundmodeshow")
+	document.getElementById("setting-container").classList.toggle("settingactivate");
+	document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow");
+	document.getElementById("soundtogglebuttoncontainer").classList.toggle("soundmodeshow");
+	document.getElementById("music-selector-container").classList.toggle("musicmodeshow");
 }
 
 function playpause() {
-	!1 == document.getElementById("switchforsound").checked ? audio.pause() : audio.play()
+	if (!document.getElementById("switchforsound").checked) {
+		audio.pause();
+	} else {
+		if (!isVisualizerInitialized) {
+			initializeVisualizer();
+		}
+		if (audioContext && audioContext.state === 'suspended') {
+			audioContext.resume();
+		}
+		audio.play();
+	}
 }
 
 function visualmode() {

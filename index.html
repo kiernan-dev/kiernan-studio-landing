@@ -125,6 +125,7 @@ Senior Javascript Engineer | AI-Amplified Development
     <!-- mobile toggle menu ends -->
     <section class="landing-page-container" id="home">
       <div class="blob"></div>
+      <canvas id="audioVisualizer" width="800" height="400"></canvas>
 
       <div class="text-content">
         <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
@@ -198,6 +199,15 @@ Senior Javascript Engineer | AI-Amplified Development
               <input type="checkbox" id="switchforvisualmode" onclick="visualmode()" />
               <label for="switchforvisualmode" id="labelforvisualmode" tabindex="0"
                 aria-label="switch appearance"></label>
+            </div>
+
+            <div class="music-selector-container" id="music-selector-container">
+              <select id="music-selector" onchange="changeTrack()" aria-label="select music track">
+                <option value="src/mp3/infinite-canvas.mp3">Infinite Canvas</option>
+                <option value="src/mp3/neon-currents.mp3">Neon Currents</option>
+                <option value="src/mp3/brushstrokes.mp3">Brushstrokes</option>
+                <option value="src/mp3/pixel-perfect.mp3">Pixel Perfect</option>
+              </select>
             </div>
 
             <div class="soundtogglebuttoncontainer" id="soundtogglebuttoncontainer">

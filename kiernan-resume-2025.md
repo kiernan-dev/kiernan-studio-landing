@@ -19,7 +19,7 @@ Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping ent
 **Frontend:** React.js, Next.js, TypeScript, JavaScript (ES6+), Redux, Vue.js, Responsive Design, PWAs, Component Architecture  
 **Backend:** Node.js, Express.js, RESTful APIs, GraphQL, Microservices, Serverless Architecture  
 **Databases:** PostgreSQL, MySQL, Firebase, Supabase  
-**DevOps & Cloud:** Docker, Vercel, Netlify, CI/CD, GitHub Actions, Jenkins 
+**DevOps & Cloud:** Docker, Vercel, Netlify, CI/CD, GitHub Actions, Jenkins
 **Testing:** Vitest, React Testing Library, Jest, Cypress, Playwright, Test-Driven Development, Unit/Integration Testing  
 **Design & UX:** Photoshop, Illustrator, Figma, Sketch, UI/UX Implementation,  Accessibility, Mobile-First Development  
 **Emerging Tech:** AI-Driven Development (Prompt Engineering, Generative AI), Web3.js, Ethers.js, Blockchain (Ethereum, Solana)
@@ -61,7 +61,7 @@ Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping ent
 
 **EPIQ** | *July 2013 - November 2018* | Kansas City, MO  
 
-- Upgraded the UI from jQuery to React and built RESTful Node.js APIs and services. 
+- Upgraded the UI from jQuery to React and built RESTful Node.js APIs and services.
 - Contributed to cloud SaaS migration, optimizing performance via code splitting and lazy loading.  
 - Provided tier 3 support for business-critical apps, collaborating remotely with global teams.  
 
