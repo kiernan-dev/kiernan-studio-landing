@@ -49,7 +49,7 @@ Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping ent
 - Implemented Salesforce and Veeva CRM integrations with custom APIs, mentoring juniors on React/TypeScript best practices.  
 - Optimized apps for distributed use, handling remote deployments and virtual collaborations across time zones.  
 
-### Frontend Developer
+### Full-Stack Developer
 
 **Trozzolo Communications Group** | *January 2019 - September 2019* | Kansas City, MO  
 
