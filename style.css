@@ -1963,7 +1963,7 @@ footer {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: top right;
+        object-position: top left;
         border-radius: 20px;
     }
     
@@ -2249,16 +2249,23 @@ footer {
 
     #name,
     #work {
-        font-size: 5.5rem;
         line-height: 1.1;
         flex-wrap: wrap;
         max-width: 100%;
+        width: auto;
         margin-bottom: 0.5rem;
     }
 
-    #name .jello,
+    #hello-friend .jello {
+        font-size: 2.5rem;
+    }
+
+    #name .jello {
+        font-size: 10rem;
+    }
+
     #work .jello {
-        font-size: 5.5rem;
+        font-size: 4rem;
     }
 
     #info-para {
@@ -2283,13 +2290,22 @@ footer {
     }
 
     .letsTalkBtn-text {
-        font-size: 1.4rem;
-        font-weight: 500;
+        font-size: 1.8rem;
+        font-weight: 900;
     }
 
     .setting-container {
         margin-left: 0;
         gap: 15px;
+    }
+
+    /* Project card GitHub icon - smaller on mobile */
+    .github-redirect {
+        width: 35px;
+    }
+
+    .github-redirect img {
+        width: 30px;
     }
 
     /* Visualizer Mobile Positioning */
