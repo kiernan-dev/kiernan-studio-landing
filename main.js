@@ -57,6 +57,9 @@ function setup() {
   colorMode(RGB);
   startColor = color(0, 0, 0);
   endColor = color(0, 0, 0);
+  
+  // Initialize p5.js sound immediately with default track
+  initializeAudioVisualizer();
 }
 
 function draw() {
@@ -68,7 +71,7 @@ function draw() {
   
   noFill();
   stroke(isLightMode() ? 0 : 255);
-  ellipse(0, 0, 150, 150);
+  ellipse(0, 0, 100, 100);
   
   const spectrum = fft.analyze();
   const spectrumValues = [];
@@ -86,8 +89,8 @@ function draw() {
   let lerpy;
   
   for (let i = 0; i < TWO_PI; i+= 0.04) {
-    const x = sin(i) * 80;
-    const y = cos(i) * 80;
+    const x = sin(i) * 60;
+    const y = cos(i) * 60;
     
     if (i < PI) {
       lerpy = lerpColor(startColor, endColor, incrementPosRight);
@@ -166,6 +169,36 @@ function visualmode() {
 		endColor = color(end[0], end[1], end[2]);
 	}
 }
+// Initialize audio visualizer immediately on setup
+function initializeAudioVisualizer() {
+  // Get the default audio source - use the src from the audio element or fallback
+  const audioElement = document.getElementById("audioPlayer");
+  let defaultSrc = audioElement.src;
+  
+  // If no src is set, use the source element's src
+  if (!defaultSrc) {
+    const sourceElement = audioElement.querySelector('source');
+    defaultSrc = sourceElement ? sourceElement.src : "src/mp3/infinite-canvas.mp3";
+    // Set the audio element src to match
+    audioElement.src = defaultSrc;
+  }
+  
+  console.log('Initializing p5.js sound:', defaultSrc);
+  
+  sound = loadSound(defaultSrc, () => {
+    console.log('p5.js sound loaded successfully');
+    // Connect the FFT to the sound
+    if (fft && sound) {
+      fft.setInput(sound);
+    }
+    const { start, end } = getGradientColors();
+    startColor = color(start[0], start[1], start[2]);
+    endColor = color(end[0], end[1], end[2]);
+  }, (error) => {
+    console.error('Error loading p5.js sound:', error);
+  });
+}
+
 // Connect p5.js sound to the existing audio player
 function loadP5Sound() {
   if (sound) {
@@ -178,6 +211,10 @@ function loadP5Sound() {
   
   sound = loadSound(currentSrc, () => {
     console.log('p5.js sound loaded successfully');
+    // Connect the FFT to the sound
+    if (fft && sound) {
+      fft.setInput(sound);
+    }
     const { start, end } = getGradientColors();
     startColor = color(start[0], start[1], start[2]);
     endColor = color(end[0], end[1], end[2]);
@@ -198,6 +235,10 @@ function loadP5SoundAndPlay(shouldPlay) {
   
   sound = loadSound(currentSrc, () => {
     console.log('p5.js sound loaded, starting coordinated playback');
+    // Connect the FFT to the sound
+    if (fft && sound) {
+      fft.setInput(sound);
+    }
     const { start, end } = getGradientColors();
     startColor = color(start[0], start[1], start[2]);
     endColor = color(end[0], end[1], end[2]);
@@ -218,12 +259,6 @@ function loadP5SoundAndPlay(shouldPlay) {
 
 window.addEventListener("load", function() {
 	loader.style.display = "none", document.querySelector(".hey").classList.add("popup");
-	// Initialize p5.js sound with the default track
-	setTimeout(() => {
-		if (typeof loadSound !== 'undefined') {
-			loadP5Sound();
-		}
-	}, 1000);
 });
 
 let emptyArea = document.getElementById("emptyarea"),
