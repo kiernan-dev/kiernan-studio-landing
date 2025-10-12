@@ -45,11 +45,19 @@ function setup() {
   const cnv = createCanvas(600, 600);
   cnv.parent('p5-visualizer-container');
   
-  cnv.mouseClicked(() => { 
-    if (sound && sound.isPlaying()) {
-      sound.pause();
-    } else if (sound && !sound.isPlaying()) {
-      sound.play();
+  cnv.mouseClicked((event) => { 
+    // Calculate distance from center to avoid interfering with play/pause button
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const distance = dist(mouseX, mouseY, centerX, centerY);
+    
+    // Only trigger if click is outside the center button area (radius > 30)
+    if (distance > 30) {
+      if (sound && sound.isPlaying()) {
+        sound.pause();
+      } else if (sound && !sound.isPlaying()) {
+        sound.play();
+      }
     }
   });
   
@@ -145,6 +153,7 @@ function playpause() {
 		if (sound && sound.isPlaying()) {
 			sound.pause();
 		}
+		updatePlayPauseIcon(false);
 	} else {
 		// Load p5.js sound if not already loaded
 		if (!sound && typeof loadSound !== 'undefined') {
@@ -154,6 +163,26 @@ function playpause() {
 		if (sound && !sound.isPlaying()) {
 			sound.play();
 		}
+		updatePlayPauseIcon(true);
+	}
+}
+
+function togglePlayPause() {
+	const soundToggle = document.getElementById("switchforsound");
+	soundToggle.checked = !soundToggle.checked;
+	playpause();
+}
+
+function updatePlayPauseIcon(isPlaying) {
+	const playIcon = document.getElementById("play-icon");
+	const pauseIcon = document.getElementById("pause-icon");
+	
+	if (isPlaying) {
+		playIcon.style.display = "none";
+		pauseIcon.style.display = "block";
+	} else {
+		playIcon.style.display = "block";
+		pauseIcon.style.display = "none";
 	}
 }
 
@@ -259,6 +288,16 @@ function loadP5SoundAndPlay(shouldPlay) {
 
 window.addEventListener("load", function() {
 	loader.style.display = "none", document.querySelector(".hey").classList.add("popup");
+	
+	// Add click event to the new play/pause button
+	const playPauseBtn = document.getElementById("visualizer-play-pause");
+	if (playPauseBtn) {
+		playPauseBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			togglePlayPause();
+		});
+	}
 });
 
 let emptyArea = document.getElementById("emptyarea"),

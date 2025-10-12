@@ -130,6 +130,16 @@ Senior Javascript Engineer | AI-Amplified Development
       <div class="blob"></div>
       <canvas id="bigVisualizer" width="800" height="400"></canvas>
       <div id="p5-visualizer-container" style="position: absolute; top: 33%; left: 80%; transform: translate(-50%, -50%); z-index: 5;"></div>
+      
+      <!-- Separate container for play/pause button to ensure it's clickable -->
+      <div id="visualizer-play-pause" style="position: absolute; top: 33%; left: 80%; transform: translate(-50%, -50%); z-index: 999; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; pointer-events: auto; background: rgba(0,0,0,0.3); border-radius: 50%;">
+          <svg id="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="white" style="display: block;">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="white" style="display: none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+      </div>
 
       <div class="text-content">
         <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
