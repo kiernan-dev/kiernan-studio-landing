@@ -22,8 +22,7 @@
 }
 
 #preloader,
-.invertapplied,
-.invertsettinglabel {
+.invertapplied {
     filter: invert(1)
 }
 
@@ -49,7 +48,6 @@ body,
     font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif
 }
 
-.eye,
 .image-div,
 .logo,
 .navbar,
@@ -460,11 +458,6 @@ noscript {
     z-index: 999999
 }
 
-.fakenavbar {
-    height: 0;
-    width: 0%;
-    background-color: transparent
-}
 
 .navbar {
     background-image: linear-gradient(to bottom right, var(--tech-stack-box-first-color), var(--tech-stack-box-second-color));
@@ -545,27 +538,10 @@ noscript {
     color: var(--color-white)
 }
 
-.blob,
-.eye,
-.pupil {
+.blob {
     border-radius: 50%
 }
 
-.popup {
-    animation: 3s linear pop-up
-}
-
-@keyframes pop-up {
-    from {
-        bottom: -50px;
-        left: 50px;
-        opacity: 1
-    }
-
-    to {
-        opacity: 0
-    }
-}
 
 .logo-top {
     width: 100%;
@@ -576,8 +552,7 @@ noscript {
     position: relative
 }
 
-.activeThistab:before,
-.face {
+.activeThistab:before {
     content: "";
     position: absolute
 }
@@ -587,37 +562,6 @@ noscript {
     z-index: 2
 }
 
-.face {
-    height: 74%;
-    bottom: 0;
-    justify-content: center;
-    gap: 5px;
-    z-index: 1;
-    padding-left: 1px
-}
-
-.eye {
-    width: 8px;
-    height: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff
-}
-
-.left-eye {
-    box-shadow: -1px -2px 2px rgba(0, 0, 0, .589) inset
-}
-
-.right-eye {
-    box-shadow: 1px 3px 2px rgba(0, 0, 0, .589) inset
-}
-
-.pupil {
-    width: 3.5px;
-    height: 3.5px;
-    background: #241010
-}
 
 .activeThistab:before {
     border-radius: 50%;
@@ -700,63 +644,6 @@ noscript {
     font-weight: 700
 }
 
-@-webkit-keyframes vibrate-1 {
-
-    0%,
-    100% {
-        -webkit-transform: translate(0);
-        transform: translate(0)
-    }
-
-    20% {
-        -webkit-transform: translate(-2px, 2px);
-        transform: translate(-2px, 2px)
-    }
-
-    40% {
-        -webkit-transform: translate(-2px, -2px);
-        transform: translate(-2px, -2px)
-    }
-
-    60% {
-        -webkit-transform: translate(2px, 2px);
-        transform: translate(2px, 2px)
-    }
-
-    80% {
-        -webkit-transform: translate(2px, -2px);
-        transform: translate(2px, -2px)
-    }
-}
-
-@keyframes vibrate-1 {
-
-    0%,
-    100% {
-        -webkit-transform: translate(0);
-        transform: translate(0)
-    }
-
-    20% {
-        -webkit-transform: translate(-2px, 2px);
-        transform: translate(-2px, 2px)
-    }
-
-    40% {
-        -webkit-transform: translate(-2px, -2px);
-        transform: translate(-2px, -2px)
-    }
-
-    60% {
-        -webkit-transform: translate(2px, 2px);
-        transform: translate(2px, 2px)
-    }
-
-    80% {
-        -webkit-transform: translate(2px, -2px);
-        transform: translate(2px, -2px)
-    }
-}
 
 #name {
     align-items: flex-start;
@@ -1152,15 +1039,6 @@ noscript {
     align-items: center
 }
 
-.language-speak {
-    height: 50px;
-    justify-content: center
-}
-
-.language-speak article {
-    font-size: 2rem;
-    font-weight: 600
-}
 
 .frontend-dev-section {
     width: 100%;
@@ -1300,9 +1178,6 @@ footer {
     border-radius: 50%
 }
 
-.faviconforProjectAquaregia {
-    width: 20px
-}
 
 .image-div {
     width: 50%;
@@ -1612,9 +1487,6 @@ footer {
     z-index: 3
 }
 
-.tonechange {
-    color: #000
-}
 
 /* Professional Highlights Section - Additional Styles */
 .highlight-number {
