@@ -287,7 +287,7 @@ function loadP5SoundAndPlay(shouldPlay) {
 }
 
 window.addEventListener("load", function() {
-	loader.style.display = "none", document.querySelector(".hey").classList.add("popup");
+	loader.style.display = "none";
 	
 	// Add click event to the new play/pause button
 	const playPauseBtn = document.getElementById("visualizer-play-pause");

@@ -471,7 +471,7 @@ noscript {
     backdrop-filter: blur(10px);
     height: 80px;
     width: 80vw;
-    padding: 0 20px;
+    padding: 0 20px 0 0;
     justify-content: space-between;
     z-index: 999;
     border: 1px solid var(--color-navbarBorder-dark);
@@ -537,26 +537,6 @@ noscript {
     user-select: none
 }
 
-.face,
-.logo-top {
-    width: 100%;
-    align-items: center;
-    display: flex
-}
-
-.hey {
-    color: #fff;
-    position: absolute;
-    font-size: 2.5rem;
-    font-weight: 300;
-    background-color: #20222e;
-    padding: 5px 10px;
-    border-radius: 20px;
-    left: 120px;
-    bottom: 80px;
-    opacity: 0
-}
-
 #hello-friend,
 #work,
 .about-info p,
@@ -588,8 +568,10 @@ noscript {
 }
 
 .logo-top {
+    width: 100%;
     height: 100%;
-    justify-content: center;
+    align-items:flex-start;
+    display: flex;
     transform-origin: bottom;
     position: relative
 }
