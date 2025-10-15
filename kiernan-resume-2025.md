@@ -40,7 +40,7 @@ Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping ent
 - Delivered full-stack MERN and Next.js applications with custom APIs, third-party services (payments, CRMs, blockchain), and Web3 integrations.  
 - Managed project lifecycles from requirements to production, reducing deployment times via CI/CD pipelines.  
 
-### Senior Frontend Developer
+### Principal Developer
 
 **Intouch Solutions** | *October 2019 - October 2022* | Overland Park, KS (Remote)  
 
@@ -69,7 +69,7 @@ Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping ent
 
 **VML (now VMLY&R)** | *October 2005 - November 2012* | Kansas City, MO  
 
-- Built interactive web experiences for Fortune 500 brands, handling millions of daily users.  
+- Built high-traffic web experiences for leading brands, driving user engagement and satisfaction.
 - Championed responsive layouts and advanced JS/CSS transitions to build complex animations and visualizations.  
 - Orchestrated agency tech migrations and platform changes for high‑traffic applications across hybrid and remote teams.  
 
