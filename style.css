@@ -204,7 +204,7 @@ html {
 .setting-container {
     width: 60px;
     height: 50px;
-    margin-left: 50px;
+    margin-left: 30px;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -844,7 +844,7 @@ noscript {
 }
 
 .resume-btn {
-    margin-top: 25px;
+    margin: 5px 0 0 50px;
     justify-content: flex-start;
     width: 45px;
     height: 45px;
