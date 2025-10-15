@@ -728,7 +728,7 @@ Senior Javascript Engineer | AI-Amplified Development
           <article>GetinTouch();</article>
         </div>
         <div class="contact-form-container">
-          <form class="contact-form" id="contact-form" data-aos="fade-up" netlify>
+          <form class="contact-form" id="contact-form" data-aos="fade-up">
             <div class="form-group">
               <label for="contact-name">Name</label>
               <input type="text" id="contact-name" name="name" autocomplete="name" required>
@@ -829,6 +829,77 @@ Senior Javascript Engineer | AI-Amplified Development
         });
       });
     });
+
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = contactForm.querySelector('.contact-submit-btn');
+    const originalBtnText = submitBtn.innerHTML;
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+      
+      // Get form data
+      const formData = {
+        name: document.getElementById('contact-name').value.trim(),
+        email: document.getElementById('contact-email').value.trim(),
+        message: document.getElementById('contact-message').value.trim()
+      };
+      
+      try {
+        const response = await fetch('contact.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          // Success
+          showMessage(result.message, 'success');
+          contactForm.reset();
+        } else {
+          // Error
+          showMessage(result.error || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch (error) {
+        console.error('Contact form error:', error);
+        showMessage('Network error. Please check your connection and try again.', 'error');
+      } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+    });
+
+    function showMessage(message, type) {
+      // Remove existing message
+      const existingMessage = document.querySelector('.contact-message');
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+      
+      // Create message element
+      const messageEl = document.createElement('div');
+      messageEl.className = `contact-message contact-message-${type}`;
+      messageEl.textContent = message;
+      
+      // Insert after form
+      contactForm.parentNode.insertBefore(messageEl, contactForm.nextSibling);
+      
+      // Auto-remove after 5 seconds
+      setTimeout(() => {
+        if (messageEl && messageEl.parentNode) {
+          messageEl.remove();
+        }
+      }, 5000);
+    }
   </script>
 </body>
 </html>
