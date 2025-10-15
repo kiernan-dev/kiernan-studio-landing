@@ -1,0 +1,19 @@
+{
+  "name": "kiernan-contact-api",
+  "version": "1.0.0",
+  "description": "Contact form API for kiernan.studio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.7",
+    "express-rate-limit": "^7.1.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
