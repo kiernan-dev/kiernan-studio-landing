@@ -5,8 +5,10 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const BASE_PATH = process.env.BASE_PATH || '';
 
 // Middleware
+app.set('trust proxy', true);
 app.use(express.json());
 app.use(cors({
   origin: [
@@ -26,11 +28,9 @@ const limiter = rateLimit({
   legacyHeaders: false
 });
 
-app.use('/contact', limiter);
-
 // Email transporter for Docker mailserver
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'localhost',
     port: process.env.SMTP_PORT || 587,
     secure: process.env.SMTP_SECURE === 'true',
@@ -44,8 +44,14 @@ const createTransporter = () => {
   });
 };
 
+// Create router for API routes
+const router = express.Router();
+
+// Apply rate limiting to contact route
+router.use('/contact', limiter);
+
 // Contact form endpoint
-app.post('/contact', async (req, res) => {
+router.post('/contact', async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
@@ -136,9 +142,18 @@ app.post('/contact', async (req, res) => {
 });
 
 // Health check
-app.get('/health', (req, res) => {
+router.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
+
+// Mount router with BASE_PATH
+if (BASE_PATH) {
+  app.use(BASE_PATH, router);
+  console.log(`Routes mounted under: ${BASE_PATH}`);
+} else {
+  app.use('/', router);
+  console.log('Routes mounted at root level');
+}
 
 app.listen(PORT, () => {
   console.log(`Contact API running on port ${PORT}`);
