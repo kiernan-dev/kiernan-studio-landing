@@ -1,38 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ToolCard from '@/components/ToolCard';
-import { MessageSquare, Search, Workflow } from 'lucide-react';
+import { Rocket, Building2, Users } from 'lucide-react';
 
 const tools = [
   {
     id: 'startups',
     name: 'Startups',
-    description: 'Cutting-edge Svelte solutions for remote teams and innovative projects. Fast, reactive, and built for scale.',
-    icon: MessageSquare,
+    description: 'Agile development for fast-moving teams who need rapid prototyping and quick iteration cycles.',
+    icon: Rocket,
     color: 'from-blue-500 to-cyan-500',
     glowColor: 'neon-glow',
     url: 'https://portfolio-s.kiernan.studio',
-    features: ['Feature 1', 'Feature 2', 'Feature 3']
+    features: ['Rapid Prototyping', 'Market Validation', 'Growth Strategy'],
+    buttonText: 'Startup-Focused View'
   },
   {
     id: 'corporations',
     name: 'Corporations',
-    description: 'Robust React applications for enterprise-grade reliability. Scalable, maintainable, and production-ready.',
-    icon: Search,
+    description: 'Enterprise-grade solutions with comprehensive documentation, security, and long-term maintenance.',
+    icon: Building2,
     color: 'from-purple-500 to-pink-500',
     glowColor: 'neon-glow-purple',
     url: 'https://portfolio-r.kiernan.studio',
-    features: ['Feature 1', 'Feature 2', 'Feature 3']
+    features: ['Risk Assessment', 'Quality Assurance', 'Performance Optimization'],
+    buttonText: 'Enterprise-Focused View'
   },
   {
     id: 'freelance',
-    name: 'Freelance',
-    description: 'Custom Astro-powered solutions for entrepreneurs and gig platforms. Fast, flexible, and future-proof.',
-    icon: Workflow,
+    name: 'Freelance Clients',
+    description: 'Personal attention and custom solutions tailored to your unique vision and business goals.',
+    icon: Users,
     color: 'from-pink-500 to-orange-500',
     glowColor: 'neon-glow-pink',
     url: 'https://portfolio-a.kiernan.studio',
-    features: ['Feature 1', 'Feature 2', 'Feature 3']
+    features: ['Discovery Sessions', 'Iterative Design', 'Launch Support'],
+    buttonText: 'Freelance-Focused View'
   }
 ];
 

@@ -17,7 +17,6 @@ const Footer = () => {
           <motion.div whileHover={{
             scale: 1.05
           }} className="flex items-center space-x-2">
-            <img src="/favicon.png" alt="Kiernan" className="w-8 h-8 rounded-xl" />
             <span className="text-lg font-semibold gradient-text">Kiernan.Studio</span>
           </motion.div>
 

@@ -35,7 +35,6 @@ const Header = () => {
             <motion.div whileHover={{
           scale: 1.05
         }} className="flex items-center space-x-3">
-              <img src="/favicon.png" alt="Kiernan" className="w-10 h-10 rounded-xl" />
               <span className="text-xl font-bold gradient-text">Kiernan.Studio</span>
             </motion.div>
 

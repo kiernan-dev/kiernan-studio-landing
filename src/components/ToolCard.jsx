@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 
 const ToolCard = React.memo(({ tool }) => {
-  const { name, description, icon: Icon, color, glowColor, features, url } = tool;
+  const { name, description, icon: Icon, color, glowColor, features, url, buttonText } = tool;
 
   const handleLaunchTool = useCallback(() => {
     if (url) {
@@ -61,7 +61,7 @@ const ToolCard = React.memo(({ tool }) => {
             className={`w-full bg-gradient-to-r ${color} hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-300 group/btn inline-flex items-center justify-center`}
           >
             <span className="flex items-center justify-center space-x-2">
-              <span>Launch {name}</span>
+              <span>{buttonText || `Launch ${name}`}</span>
               <motion.div
                 className="group-hover:translate-x-1 transition-transform duration-200"
               >
