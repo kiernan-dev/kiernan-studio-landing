@@ -25,9 +25,7 @@ const ToolCard = React.memo(({ tool }) => {
           >
             <Icon className="w-8 h-8 text-white" />
           </motion.div>
-          <h3 className="text-2xl font-bold text-foreground group-hover:gradient-text transition-all duration-300">
-            {name}
-          </h3>
+          <h3 className="text-2xl font-bold text-foreground group-hover:gradient-text transition-all duration-300 text-left" style={{lineHeight: '1.4rem'}} dangerouslySetInnerHTML={{ __html: name }}></h3>
         </div>
 
         <div className="flex-grow flex flex-col space-y-4">

@@ -6,7 +6,7 @@ import { Rocket, Building2, Users } from 'lucide-react';
 const tools = [
   {
     id: 'startups',
-    name: 'Startups',
+    name: 'For Startups',
     description: 'Agile development for fast-moving teams who need rapid prototyping and quick iteration cycles.',
     icon: Rocket,
     color: 'from-blue-500 to-cyan-500',
@@ -17,7 +17,7 @@ const tools = [
   },
   {
     id: 'corporations',
-    name: 'Corporations',
+    name: 'For Corporations',
     description: 'Enterprise-grade solutions with comprehensive documentation, security, and long-term maintenance.',
     icon: Building2,
     color: 'from-purple-500 to-pink-500',
@@ -28,7 +28,7 @@ const tools = [
   },
   {
     id: 'freelance',
-    name: 'Freelance Clients',
+    name: 'For <br />Freelance Clients',
     description: 'Personal attention and custom solutions tailored to your unique vision and business goals.',
     icon: Users,
     color: 'from-pink-500 to-orange-500',

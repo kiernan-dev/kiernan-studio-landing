@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, CloudLightning } from 'lucide-react';
 import Meteors from '@/components/ui/Meteors';
 import ToolsSection from '@/components/ToolsSection';
 

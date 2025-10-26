@@ -1,6 +1,6 @@
-# Kiernan Cloud Lab
+# Kiernan.Studio
 
-A modern, high-performance landing page built with React and Vite, showcasing curated AI and automation tools for invited users.
+A modern, high-performance portfolio landing page built with React and Vite, showcasing full-stack development and graphic design work for startups, corporations, and freelance clients.
 
 ## ✨ Features
 
@@ -16,7 +16,7 @@ A modern, high-performance landing page built with React and Vite, showcasing cu
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended package manager)
 
 ### Installation
@@ -24,7 +24,7 @@ A modern, high-performance landing page built with React and Vite, showcasing cu
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd kiernan.cloud-landing
+cd kiernan.studio-landing
 
 # Install dependencies
 pnpm install
@@ -47,28 +47,32 @@ pnpm run preview      # Preview production build locally
 ## 🛠 Tech Stack
 
 ### Core
+
 - **React 18** - UI library with modern hooks
 - **Vite** - Build tool and development server
 - **JavaScript** - No TypeScript overhead for this simple landing page
 
 ### Styling
+
 - **Tailwind CSS** - Utility-first CSS framework
 - **PostCSS** - CSS processing
 - **Custom CSS** - Optimized animations and glassmorphism effects
 
 ### UI & UX
+
 - **Framer Motion** - Smooth animations and gestures
 - **Lucide React** - Beautiful, customizable icons
 - **Custom Theme System** - Dark/light mode with system detection
 
 ### Development
+
 - **ESLint** - Code linting with React best practices
 - **Autoprefixer** - Automatic CSS vendor prefixes
 
 ## 📁 Project Structure
 
-```
-kiernan.cloud-landing/
+```txt
+kiernan.studio-landing/
 ├── public/
 │   └── favicon.png           # Site favicon
 ├── src/
@@ -78,9 +82,6 @@ kiernan.cloud-landing/
 │   │   ├── Footer.jsx        # Site footer
 │   │   ├── Header.jsx        # Navigation header
 │   │   ├── Hero.jsx          # Hero section with interactive particles
-│   │   ├── ParticleIcon.jsx  # Animated particle component
-│   │   ├── TechImageIcons.js # Icon data
-│   │   ├── TechImageIcons.jsx # Icon components
 │   │   ├── ThemeProvider.jsx # Theme context provider
 │   │   ├── ToolCard.jsx      # Tool showcase cards
 │   │   └── ToolsSection.jsx  # Tools grid section
@@ -97,17 +98,20 @@ kiernan.cloud-landing/
 ## 🎨 Design System
 
 ### Colors
+
 - **Primary**: Blue to purple gradient (`#3b82f6` → `#8b5cf6`)
 - **Accent**: Pink highlight (`#ec4899`)
 - **Background**: Dynamic gradients for dark/light modes
 - **Glass Effects**: Backdrop blur with subtle transparency
 
 ### Typography
+
 - **Font**: Inter with system font fallbacks
 - **Gradient Text**: Animated gradient text effects
 - **Responsive**: Scales from mobile to desktop
 
 ### Components
+
 - **Glass Cards**: Glassmorphism effect with backdrop blur
 - **Neon Glows**: Subtle glow effects in dark mode
 - **Smooth Animations**: Hardware-accelerated transitions
@@ -115,6 +119,7 @@ kiernan.cloud-landing/
 ## 🚀 Performance
 
 ### Optimizations Applied
+
 - **Memory Leak Prevention**: Proper event listener cleanup
 - **React Optimization**: Memoized components and callbacks
 - **CSS Optimization**: Minimal CSS variables, hardware acceleration
@@ -122,6 +127,7 @@ kiernan.cloud-landing/
 - **Animation Performance**: GPU-accelerated transforms
 
 ### Bundle Size
+
 - **CSS**: ~16KB (4KB gzipped)
 - **JavaScript**: ~260KB (85KB gzipped)
 - **Total**: Optimized for fast loading
@@ -150,20 +156,20 @@ kiernan.cloud-landing/
 ## 🔧 Configuration
 
 ### Theme Customization
+
 Edit `src/index.css` to customize:
+
 - Color variables in `:root` and `.dark`
 - Animation timings and effects
 - Glassmorphism opacity and blur
 
 ### Content Updates
+
 - **Hero Text**: Update in `src/components/Hero.jsx`
 - **Tools**: Modify `src/components/ToolsSection.jsx`
-- **Icons**: Add to `src/components/TechImageIcons.js`
 
 ## 📄 License
 
 This project is for personal use. All rights reserved.
 
 ---
-
-**Built with ❤️ for the future of AI**
