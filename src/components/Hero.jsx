@@ -46,7 +46,7 @@ const Hero = () => {
             }} transition={{
               duration: 0.8,
               delay: 0.2
-            }} className="hidden sm:block text-4xl sm:text-5xl md:text-7xl font-bold gradient-text">Full-Stack Developer <br />& Graphic Designer</motion.h1>
+            }} className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold gradient-text leading-tight pb-2">Full-Stack Developer <br />& Graphic Designer</motion.h1>
           </div>
           
           <motion.p initial={{
@@ -58,7 +58,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.4
-          }} className="text-base sm:text-lg md:text-xl text-muted-foreground mt-8 max-w-3xl mx-auto">Crafting Innovative Web Solutions for Startups, Corporations, and Entrepreneurs</motion.p>
+          }} className="text-lg sm:text-xl md:text-2xl text-muted-foreground m-20 max-w-5xl mx-auto">Crafting Innovative Web Solutions for Startups, Corporations, and Entrepreneurs</motion.p>
         </motion.div>
         <ToolsSection />
       </div>

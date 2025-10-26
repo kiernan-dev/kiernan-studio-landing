@@ -18,19 +18,19 @@ const ToolCard = React.memo(({ tool }) => {
       onClick={handleLaunchTool}
     >
       <div className={`glass rounded-2xl p-8 h-full flex flex-col dark:hover:${glowColor} transition-all duration-500`}>
-        <div className="relative mb-6">
+        <div className="relative mb-6 flex items-center space-x-4">
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className={`w-16 h-16 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center mb-4 shadow-lg dark:shadow-none dark:${glowColor}`}
+            className={`w-16 h-16 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg dark:shadow-none dark:${glowColor}`}
           >
             <Icon className="w-8 h-8 text-white" />
           </motion.div>
-        </div>
-
-        <div className="flex-grow flex flex-col space-y-4">
           <h3 className="text-2xl font-bold text-foreground group-hover:gradient-text transition-all duration-300">
             {name}
           </h3>
+        </div>
+
+        <div className="flex-grow flex flex-col space-y-4">
           
           <p className="text-muted-foreground leading-relaxed flex-grow">
             {description}
