@@ -17,24 +17,24 @@ const ToolCard = React.memo(({ tool }) => {
       className="group relative h-full cursor-pointer"
       onClick={handleLaunchTool}
     >
-      <div className={`glass rounded-2xl p-8 h-full flex flex-col dark:hover:${glowColor} transition-all duration-500`}>
-        <div className="relative mb-6 flex items-center space-x-4">
+      <div className={`glass rounded-2xl p-6 md:p-8 h-full flex flex-col dark:hover:${glowColor} transition-all duration-500`}>
+        <div className="relative mb-4 md:mb-6 flex items-center space-x-3 md:space-x-4">
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className={`w-16 h-16 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg dark:shadow-none dark:${glowColor}`}
+            className={`hidden min-[425px]:flex w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${color} items-center justify-center shadow-lg dark:shadow-none dark:${glowColor}`}
           >
-            <Icon className="w-8 h-8 text-white" />
+            <Icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </motion.div>
-          <h3 className="text-2xl font-bold text-foreground group-hover:gradient-text transition-all duration-300 text-left" style={{lineHeight: '1.4rem'}} dangerouslySetInnerHTML={{ __html: name }}></h3>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:gradient-text transition-all duration-300 text-left" style={{lineHeight: '1.4rem'}} dangerouslySetInnerHTML={{ __html: name }}></h3>
         </div>
 
-        <div className="flex-grow flex flex-col space-y-4">
+        <div className="flex-grow flex flex-col space-y-3 md:space-y-4">
           
-          <p className="text-muted-foreground leading-relaxed flex-grow">
+          <p className="text-base md:text-base text-muted-foreground leading-relaxed flex-grow">
             {description}
           </p>
 
-          <div className="space-y-2 pt-2">
+          <div className="space-y-1.5 md:space-y-2 pt-2">
             {features.map((feature, index) => (
               <motion.div
                 key={feature}
@@ -42,9 +42,9 @@ const ToolCard = React.memo(({ tool }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-center space-x-2 text-sm text-muted-foreground"
+                className="flex items-center space-x-2 text-sm md:text-sm text-muted-foreground"
               >
-                <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${color}`} />
+                <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-r ${color}`} />
                 <span>{feature}</span>
               </motion.div>
             ))}
@@ -53,10 +53,10 @@ const ToolCard = React.memo(({ tool }) => {
         
         <motion.div
           whileHover={{ scale: 1.02 }}
-          className="mt-8"
+          className="mt-6 md:mt-8"
         >
           <div
-            className={`w-full bg-gradient-to-r ${color} hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-300 group/btn inline-flex items-center justify-center`}
+            className={`w-full bg-gradient-to-r ${color} hover:opacity-90 text-white font-semibold py-2.5 md:py-3 text-base md:text-base rounded-xl transition-all duration-300 group/btn inline-flex items-center justify-center`}
           >
             <span className="flex items-center justify-center space-x-2">
               <span>{buttonText || `Launch ${name}`}</span>

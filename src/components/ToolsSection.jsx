@@ -41,9 +41,9 @@ const tools = [
 
 const ToolsSection = () => {
   return (
-    <section className="py-4 px-4 relative">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <section className="py-8 px-0 lg:px-4 relative">
+      <div className="container mx-auto px-0 lg:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-0 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {tools.map((tool, index) => (
             <motion.div
               key={tool.id}

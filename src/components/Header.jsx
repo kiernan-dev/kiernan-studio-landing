@@ -30,7 +30,7 @@ const Header = () => {
   }} transition={{
     duration: 0.6
   }} className="fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-2 lg:px-4 py-4">
         <div className="glass rounded-xl flex justify-between items-center px-4 py-3">
             <motion.div whileHover={{
           scale: 1.05
